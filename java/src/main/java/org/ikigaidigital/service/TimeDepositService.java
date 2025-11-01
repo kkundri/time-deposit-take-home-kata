@@ -1,14 +1,18 @@
 package org.ikigaidigital.service;
+
 import org.ikigaidigital.TimeDeposit;
 import org.ikigaidigital.TimeDepositCalculator;
+import org.ikigaidigital.dto.TimeDepositResponse;
 import org.ikigaidigital.entity.TimeDepositEntity;
+import org.ikigaidigital.mapper.TimeDepositMapper;
 import org.ikigaidigital.repository.TimeDepositRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,8 +31,18 @@ public class TimeDepositService {
     private final ReentrantLock updateLock = new ReentrantLock();
 
     @Transactional(readOnly = true)
-    public List<TimeDepositEntity> getAllTimeDeposits() {
-        return timeDepositRepository.findAll();
+    public List<TimeDepositResponse> getAllTimeDeposits() {
+
+        List<TimeDepositEntity> entities = timeDepositRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+
+        List<TimeDepositResponse> timeDepositResponses = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(entities)) {
+            timeDepositResponses= entities
+                    .stream().map(TimeDepositMapper::toResponse)
+                    .toList();
+        }
+        return timeDepositResponses;
+
     }
 
     @Transactional
