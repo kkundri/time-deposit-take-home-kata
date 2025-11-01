@@ -39,7 +39,7 @@ A junior developer implemented domain logic for a time deposit system but did no
     - No interest is applied for the first 30 days for any existing plans.
 
 4. **Refactoring Constraints**:
-    - Do not introduce breaking changes to the shared `TimeDeposit` class or modify the `updateBalance` method signature.
+    - Do not introduce breaking changes to the shared `TimeDepositEntity` class or modify the `updateBalance` method signature.
     - Ensure the design is extensible to accommodate future complexities in interest calculations.
 
 5. **Code Quality**:

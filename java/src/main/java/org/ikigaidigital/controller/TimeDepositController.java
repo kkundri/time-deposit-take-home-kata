@@ -1,13 +1,12 @@
 package org.ikigaidigital.controller;
 
 
+import org.ikigaidigital.dto.ApiResponse;
 import org.ikigaidigital.dto.TimeDepositResponse;
 import org.ikigaidigital.service.TimeDepositService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,13 +18,14 @@ public class TimeDepositController {
     private TimeDepositService timeDepositService;
 
     @GetMapping
-    public List<TimeDepositResponse> getAll() {
-        return timeDepositService.getAllTimeDeposits();
+    public ResponseEntity<ApiResponse<List<TimeDepositResponse>>> getAll() {
+        List<TimeDepositResponse> data = timeDepositService.getAllTimeDeposits();
+        return ResponseEntity.ok(ApiResponse.success(data,"Fetched time deposits"));
     }
 
     @PostMapping("/update-balances")
-    public String updateBalances() {
+    public ResponseEntity<ApiResponse<String>> updateBalances() {
         timeDepositService.updateAllBalances();
-        return "Balances updated successfully";
+        return ResponseEntity.ok(ApiResponse.success("Balances updated successfully"));
     }
 }

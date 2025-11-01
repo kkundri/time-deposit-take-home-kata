@@ -58,7 +58,7 @@ public class TimeDepositService {
             Map<Integer, TimeDepositEntity> idToEntity = new HashMap<>();
             for (TimeDepositEntity e : entities) {
                 domainList.add(new TimeDeposit(e.getId(),
-                        e.getPlanType(),
+                        e.getPlanType().toLowerCase(),
                         e.getBalance().doubleValue(),
                         e.getDays()));
                 idToEntity.put(e.getId(), e);
@@ -70,6 +70,9 @@ public class TimeDepositService {
                 TimeDepositEntity entity = idToEntity.get(domain.getId());
                 if (entity != null) {
                     entity.setBalance(BigDecimal.valueOf(domain.getBalance()));
+                    if(entity.getVersion() == null) {
+                        entity.setVersion(0L);
+                    }
                 }
             }
 

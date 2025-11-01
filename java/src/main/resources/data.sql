@@ -1,9 +1,9 @@
 
 
 -- Insert sample time deposits
-INSERT INTO TIME_DEPOSITS (id,plan_type, days, balance) VALUES (1,'Basic', 60, 10000.00);
-INSERT INTO TIME_DEPOSITS (id,plan_type, days, balance) VALUES (2,'Student', 120, 5000.00);
-INSERT INTO TIME_DEPOSITS (id,plan_type, days, balance) VALUES (3,'Premium', 90, 20000.00);
+INSERT INTO TIME_DEPOSITS (id,plan_type, days, balance) VALUES (1,'basic', 60, 10000.00);
+INSERT INTO TIME_DEPOSITS (id,plan_type, days, balance) VALUES (2,'student', 120, 5000.00);
+INSERT INTO TIME_DEPOSITS (id,plan_type, days, balance) VALUES (3,'premium', 90, 20000.00);
 
 
 -- Insert sample withdrawals

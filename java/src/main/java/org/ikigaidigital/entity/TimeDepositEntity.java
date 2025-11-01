@@ -3,6 +3,7 @@ package org.ikigaidigital.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -30,6 +31,8 @@ public class TimeDepositEntity {
     private List<WithdrawalEntity> withdrawalEntities;
 
     @Version
+    @Column(nullable = false)
+    @ColumnDefault("0")
     private Long version;
 
 }
