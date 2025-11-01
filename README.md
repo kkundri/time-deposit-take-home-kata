@@ -51,7 +51,7 @@ A junior developer implemented domain logic for a time deposit system but did no
 - **Do not** create a pull request or a new branch in the ikigai-digital repository. Instead, fork the repository into your own GitHub repository and develop the solution there.
 - Handling invalid input or exceptions is not required.
 - Use any tools, frameworks, or libraries you find suitable.
-- In case of ambiguity, make logical assumptions and justify them in code comments.
+- In case of ambiguity, make logical assumptions and [WithdrawalResponse.java](java/src/main/java/org/ikigaidigital/dto/WithdrawalResponse.java)justify them in code comments.
 
 ### Preferred Stack
 - Use an OpenAPI Swagger contract.
@@ -62,3 +62,31 @@ A junior developer implemented domain logic for a time deposit system but did no
 ### Submission Instructions
 - Provide clear instructions on how to trigger the endpoints using the Swagger contract.
 - Email the link to your public GitHub repository.
+
+### Execution Instruction
+
+1. **Start the API**
+   - In a terminal:
+      - cd java 
+      - mvn spring-boot:run 
+   - Server runs at http://localhost:8080
+   
+
+2. **Open Swagger**
+   - Swagger UI: http://localhost:8080/swagger-ui.html
+   - In Swagger UI: expand an operation → Try it out → Execute
+   
+
+3. **Endpoints to trigger in Swagger** (or cURL)
+   - **GET** **/api/time-deposits**
+       - Returns all time deposits in the standard envelope (status, message, data, timestamp)
+
+   - **POST** **/api/time-deposits/update-balances**
+      - Recalculates and persists balances for all time deposits
+        
+
+4. **H2 console**
+   - http://localhost:8080/h2-console
+   - JDBC URL: jdbc:h2:mem:timedeposit;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+   - User: sa
+   - Password: (empty)
