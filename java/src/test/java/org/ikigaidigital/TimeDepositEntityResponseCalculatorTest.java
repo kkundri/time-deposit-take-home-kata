@@ -2,11 +2,12 @@ package org.ikigaidigital;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TimeDepositCalculatorTest {
+public class TimeDepositEntityResponseCalculatorTest {
     @Test
     public void updateBalance_Test() {
         TimeDepositCalculator calc = new TimeDepositCalculator();
